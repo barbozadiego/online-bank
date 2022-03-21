@@ -8,6 +8,10 @@
     --grey-700             :    #273b49;
     --grey-800             :    #28353e;
     --grey-900             :    #192229;
+    --bg-color-1           :     #F79F1F;
+    --bg-color-2           :     #0652DD;
+    --bg-color-3           :     #EA2027;
+    --bg-color-4           :     #009432;
 }
 
 *, *::after, *::before {
@@ -17,106 +21,147 @@
     outline: none;
 }
 
+button {
+    border: 0;
+    background-color: inherit;
+}
+
 body {
     min-height: 100vh;
     font-family: arial;
+    color: var(--grey-900);
 }
 
 header {
+    width: 100%;
+}
+
+header img {
+    width: 100%;
+    display: block;
+}
+
+footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f6de3e;
     padding: 5em;
+    background-color: var(--grey-900);
+    color: #fff;
 }
 
-header h1 {
-    font-size: 4em;
-    text-align: center;
-    margin-bottom: .1em;
+nav {
+    display: flex;
+    justify-content: center;
+    /* background-color: #eee; */
+    padding: 3em;
 }
 
-header h2 {
-    font-size: 1.2em;
+.menu {
+    display: flex;
+    list-style: none;
+    cursor: pointer;
+}
+
+.menu li {
     text-align: center;
+    min-width: 10em;
+    background-color: var(--grey-900);
+    color: #fff;
+    padding: 1em;
+    border-radius: .5em;
+}
+
+.menu li:first-child {
+    margin-right: 1.5em;
 }
 
 .main-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
+    /* display: flex; */
 }
 
 .main-content h2 {
-    margin-bottom: 1em;
+    color: var(--grey-300);
     text-align: center;
+    margin-bottom: 1.5em;
 }
 
 
 .alert-box {
-    grid-column: span 2;
-    grid-row: span 1;
-    background-color: green;
+    padding: 5em;
+    background-color: #fff;
 }
 
-.create-account {
-    grid-column: span 1;
-    grid-row: 2 / span 1;
-    background-color: #e5e5e5;
+/* .info {
+    width: 100%;
+    color: red;
+    background-color: #009432;
+    padding: 2em;
+} */
+
+.create-account, .deposit {
+    background-color: var(--grey-700);
+    border-bottom: .4em solid var(--grey-800);
 }
 
-.transfer {
-    grid-column: 2 / span 1;
-    grid-row: 2 / span 1;
-    background-color: #888;
+
+.transfer, .check-balance {
+    background-color: var(--grey-600);
+    border-bottom: .4em solid var(--grey-700);
 }
 
-.deposit {
-    grid-column: 2 / span 1;
-    grid-row: 3 / span 1;
-    background-color: #eee;
+
+.create-account, .deposit,
+.transfer, .check-balance {
+    width: 100%;
+    padding: 4em 0;
 }
 
 .check-balance {
-    grid-column: span 1;
-    grid-row: 3 / span 1;
-    background-color: #888;
+    border: none;
 }
 
-.registered {
-    grid-column: span 2;
-    grid-row: 4 / span 1;
-    background-color: royalblue;
+
+.container-inputs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3em;
+}
+
+::placeholder {
+    color: var(--grey-400);
+}
+
+input {
+    font-size: 1em;
+    color: var(--grey-200);
+    padding: 1.2em 1em;
+    border-radius: .5em;
+    border: .15em solid var(--grey-900);
+    background-color: inherit;
+    /* border: .15em solid #fff; */
+}
+
+form input:not(:last-child) {
+    margin-right: 1em;
+}
+
+
+.container-btn {
     display: flex;
     justify-content: center;
 }
 
-
-.create-account form, .deposit form,
-.transfer form, .check-balance form {
-    padding: 1.5% 5%;
-}
-
-
-.btn, .registered button  {
-    color: #fff;
-    background-color: var(--grey-800);
+.btn  {
+    font-size: 1em;
+    min-width: 10em;
+    color: var(--grey-100);
+    background-color: var(--grey-900);
     padding: 1em 1.5em;
-    border: 0;
     border-radius: .5em;
     cursor: pointer;
+    /* border: .1em solid var(--grey-100); */
 }
-
-.registered button {
-    max-height: 5em;
-}
-
-input {
-    padding: 1em;
-    border-radius: .5em;
-    border: .1em solid var(--grey-800);
-    background-color: inherit;
-}
-
 
 

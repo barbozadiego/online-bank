@@ -17,23 +17,26 @@ class User {
 
 
 
-let imprimir = document.getElementById('boxAlert')
+let imprimir = document.getElementById('alerts')
 let boxInfo = document.createElement('div')
-boxInfo.className = ('info')
+    boxInfo.className = ('info')
 
 
 //============================================/* Crear Cuenta */=======================================================//
 
-let formCrearCuenta = document.getElementById('form-cuenta')
+let formCrearCuenta = document.querySelector('.create-account form')
 
 formCrearCuenta.addEventListener('submit', (e) => {
     let nombre = document.getElementById('nombre').value.toLowerCase().trim()
     let edad = document.getElementById('edad').value
-    edad = parseInt(edad,10)
+        edad = parseInt(edad,10)
     let montoApertura = document.getElementById('montoApertura').value
-    montoApertura = parseInt(montoApertura,10)
+        montoApertura = parseInt(montoApertura,10)
     
     e.preventDefault()
+
+    console.log(nombre, edad, montoApertura)
+
     crearCuenta(nombre,edad,montoApertura)
     imprimir.appendChild(boxInfo)
 
@@ -42,7 +45,7 @@ formCrearCuenta.addEventListener('submit', (e) => {
 //============================================/* Realizar Transferencias */=======================================================//
 
 
-let formTransferir = document.getElementById('form-transferir')
+let formTransferir = document.querySelector('.transfer form')
 
 formTransferir.addEventListener('submit', (e) => {
     let emisor = document.getElementById('emisor').value.toLowerCase().trim()
@@ -57,7 +60,6 @@ formTransferir.addEventListener('submit', (e) => {
    transferir(emisor,receptor,cuenta,monto) 
     
     imprimir.appendChild(boxInfo)
-
 })
 
 
@@ -65,7 +67,7 @@ formTransferir.addEventListener('submit', (e) => {
 
 //==========================================/* Depositar */=========================================================//
 
-let formDeposito = document.getElementById('form-deposito')
+let formDeposito = document.querySelector('.deposit form')
 
 formDeposito.addEventListener('submit', (e) => {
     let nombre = document.getElementById('nombreUsuario').value.toLowerCase().trim()
@@ -205,11 +207,11 @@ const depositar = (nombre,cuenta,monto) => {
 
 
 
-let btnRegistrados = document.getElementById('btn-registrados')
+let btnRegistrados = document.getElementById('userQuery')
 
 btnRegistrados.addEventListener('click',() => {
 
-    imprimir.removeChild(boxInfo)
+    // imprimir.removeChild(boxInfo)
 
    const boxRegistrados = document.createElement('div') 
    const eliminarDuplicado = document.getElementById('registro')
