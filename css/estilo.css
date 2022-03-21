@@ -1,0 +1,122 @@
+:root {
+    --grey-100             :    #fbfdfe;
+    --grey-200             :    #f9fafb;
+    --grey-300             :    #ecf0f3;
+    --grey-400             :    #b7c1c8;
+    --grey-500             :    #8e9ba4;
+    --grey-600             :    #687782;
+    --grey-700             :    #273b49;
+    --grey-800             :    #28353e;
+    --grey-900             :    #192229;
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    min-height: 100vh;
+    font-family: arial;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f6de3e;
+    padding: 5em;
+}
+
+header h1 {
+    font-size: 4em;
+    text-align: center;
+    margin-bottom: .1em;
+}
+
+header h2 {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.main-content h2 {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+
+.alert-box {
+    grid-column: span 2;
+    grid-row: span 1;
+    background-color: green;
+}
+
+.create-account {
+    grid-column: span 1;
+    grid-row: 2 / span 1;
+    background-color: #e5e5e5;
+}
+
+.transfer {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    background-color: #888;
+}
+
+.deposit {
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+    background-color: #eee;
+}
+
+.check-balance {
+    grid-column: span 1;
+    grid-row: 3 / span 1;
+    background-color: #888;
+}
+
+.registered {
+    grid-column: span 2;
+    grid-row: 4 / span 1;
+    background-color: royalblue;
+    display: flex;
+    justify-content: center;
+}
+
+
+.create-account form, .deposit form,
+.transfer form, .check-balance form {
+    padding: 1.5% 5%;
+}
+
+
+.btn, .registered button  {
+    color: #fff;
+    background-color: var(--grey-800);
+    padding: 1em 1.5em;
+    border: 0;
+    border-radius: .5em;
+    cursor: pointer;
+}
+
+.registered button {
+    max-height: 5em;
+}
+
+input {
+    padding: 1em;
+    border-radius: .5em;
+    border: .1em solid var(--grey-800);
+    background-color: inherit;
+}
+
+
+
