@@ -15,17 +15,20 @@
     </header>
     <nav>
         <ul class="menu">
-            <li>❌ Borrar Registro</li>
-            <li id="userQuery">✅ Ver Registro</li>
+            <li id="deleteUsers">❌ Delete users log</li>
+            <li id="userQuery">✅ View users log</li>
         </ul>
     </nav>
 
     <div class="main-content">
         <div>
-            <section class="alert-box">
-                <h2>🔔 Notificaciones</h2>
-                <div id="alerts">
+            <section class="container-notifications">
+                <h2>🔔 Notifications</h2>
+                <div id="notifications">
                             
+                </div>
+                <div class="container-btn">
+                    <button id="deleteNotifications">❌ Clear notifications</button>
                 </div>
             </section>
             
@@ -43,13 +46,11 @@
                                 <input type="text" 
                                         placeholder="Age"  
                                         id="age" 
-                                        value="100"
                                         required
                                 >
                                 <input type="text"
                                         placeholder="Starting amount" 
                                         id="startingAmount" 
-                                        value="100"
                                         required
                                 >
                             </div>

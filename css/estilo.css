@@ -12,6 +12,10 @@
     --bg-color-2           :     #0652DD;
     --bg-color-3           :     #EA2027;
     --bg-color-4           :     #009432;
+
+    --color-successful     :    #00ab66;
+    --color-warning        :    #ffd200;
+    --color-danger         :    #ed4337;
 }
 
 *, *::after, *::before {
@@ -21,9 +25,52 @@
     outline: none;
 }
 
+/*____________________________________________|  Scroll Bar  |____________________________________________*/
+
+
+body::-webkit-scrollbar {
+    width: .5em;
+    height: .5em; 
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: .5em;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--grey-900);
+}
+
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+
+#notifications::-webkit-scrollbar {
+    width: .5em;
+    height: .5em; 
+}
+
+#notifications::-webkit-scrollbar-thumb {
+    background: var(--grey-400);
+    border-radius: .5em;
+}
+
+#notifications::-webkit-scrollbar-track {
+    background: var(--grey-300);
+    border-radius: .5em;
+}
+
+#notifications::-webkit-scrollbar-button {
+    display: none;
+}
+
+
 button {
     border: 0;
     background-color: inherit;
+    cursor: pointer;
 }
 
 body {
@@ -65,7 +112,7 @@ nav {
 
 .menu li {
     text-align: center;
-    min-width: 10em;
+    min-width: 12em;
     background-color: var(--grey-900);
     color: #fff;
     padding: 1em;
@@ -87,13 +134,61 @@ nav {
     overflow: hidden;
 } */
 
-.alert-box {
-    padding: 3em 5em 5em;
+.container-notifications {
+    padding: 3em 4em 4em;
     background-color: #fff;
     border: .15em solid var(--grey-900);
     border-radius: 1em;
     overflow: hidden;
     margin-bottom: 3em;
+}
+
+
+.successful, .warning, .danger {
+    border-radius: .5em;
+    padding: 1em 2em;
+}
+
+.successful {
+    background-color: rgba(0, 171, 102, .5);
+}
+
+.warning {
+    background-color: rgba(255, 210, 0, .5);
+}
+
+.danger {
+    background-color: rgba(237, 67, 55, .5);
+}
+
+h3 {
+    margin-bottom: .5em;
+}
+
+#notifications {
+    max-height: 15em;
+    overflow-y: scroll;
+    padding: 0 1em;
+    margin-bottom: 1.5em;
+}
+
+#usersLog {
+    background-color: var(--color-warning);
+    padding: 2em;
+    border-radius: .5em;
+    margin-bottom: 1em;
+}
+
+/* .user {
+} */
+
+/* .information-box {
+    border: .2em solid red;
+} */
+
+.information-box > div {
+    /* background-color: var(--color-successful); */
+    margin-bottom: 1em;
 }
 
 .content-forms {
@@ -160,7 +255,7 @@ input {
     justify-content: center;
 }
 
-.btn  {
+.btn, button  {
     font-size: 1em;
     min-width: 10em;
     color: var(--grey-100);
@@ -170,5 +265,7 @@ input {
     cursor: pointer;
     /* border: .1em solid var(--grey-100); */
 }
+
+
 
 

@@ -14,10 +14,9 @@ class User {
 /*_______________________________________________________________| Variables  |_______________________________________________________________*/
 
 
-const displayOnScreen = document.getElementById('alerts'),
+const displayOnScreen = document.getElementById('notifications'),
       informationBox = document.createElement('div')
       informationBox.className = ('information-box')
-
 
 let localUsers
 
@@ -25,21 +24,21 @@ let localUsers
         ? localUsers = JSON.parse(window.localStorage.getItem('users'))
         : localUsers = []
 
-    // if(window.localStorage.getItem('users')) {
-    //     localUsers = JSON.parse(window.localStorage.getItem('users'))
-    // } else {
-    //     localUsers = []
-    // }
-
-
-
+    
+let localNotifications = window.localStorage.getItem('notifications')
+    if(localNotifications) { 
+        informationBox.innerHTML = localNotifications
+        displayOnScreen.appendChild(informationBox)
+    }
 
 
 const formCreateAccount = document.querySelector('.create-account form')
-      formTransfer = document.querySelector('.transfer form')
-      formDeposit = document.querySelector('.deposit form')
-      formCheckBalance = document.querySelector('.check-balance form')
-      btnUserQuery = document.getElementById('userQuery')
+      formTransfer = document.querySelector('.transfer form'),
+      formDeposit = document.querySelector('.deposit form'),
+      formCheckBalance = document.querySelector('.check-balance form'),
+      btnUserQuery = document.getElementById('userQuery'),
+      btnDeleteNotifications = document.getElementById('deleteNotifications'),
+      btnDeleteUsers = document.getElementById('deleteUsers')
 
 
 
@@ -100,43 +99,69 @@ const formCreateAccount = document.querySelector('.create-account form')
 
 /*__________________| Show Users  |__________________*/
 
-    btnUserQuery.addEventListener('click',() => {
+    btnUserQuery.addEventListener('click', () => {
+      const usersLog = document.createElement('div'), 
+            deleteDuplicate = document.getElementById('usersLog')
+            usersLog.id = "usersLog"
 
-        // displayOnScreen.removeChild(informationBox)
-
-    const boxRegistrados = document.createElement('div'), 
-          eliminarDuplicado = document.getElementById('registro')
-          boxRegistrados.id = "registro"
-
-        if(localUsers) {
-            for(let user of localUsers) {
-                boxRegistrados.innerHTML += 
-                    `<p>
-                        <strong>👤 Name:</strong> ${user.name} | 
-                        <strong> Age:</strong> ${user.age} |
-                        <strong> N° Account:</strong> N°${user.account}
-                    </p>`
+            if(localUsers.length > 0) { 
+                for(let user of localUsers) {
+                    usersLog.innerHTML += 
+                            `<p class='user'>
+                                <strong>👤 Name:</strong> ${user.name} | 
+                                <strong> Age:</strong> ${user.age} |
+                                <strong> N° Account:</strong> ${user.account}
+                            </p>`
+                }
+        
+                displayOnScreen.appendChild(usersLog)
+            } else {
+                usersLog.innerHTML += 
+                    `<div class='warning'>  
+                        <h3>⚠️ User log is empty</h3>
+                    </div>`
+                displayOnScreen.appendChild(usersLog)
             }
-    
-            if(eliminarDuplicado) displayOnScreen.removeChild(eliminarDuplicado)    
-            displayOnScreen.appendChild(boxRegistrados)
-        }
 
+            if(deleteDuplicate) displayOnScreen.removeChild(deleteDuplicate)    
+
+            window.localStorage.setItem('notifications', informationBox.innerHTML)
+    })
+
+    btnDeleteNotifications.addEventListener('click', () => informationBox.innerHTML = '')
+
+    btnDeleteUsers.addEventListener('click', () => {
+        const usersLog = document.getElementById('usersLog')
+        if(usersLog) usersLog.remove()
+        
+        localUsers = []
+        window.localStorage.setItem('users', JSON.stringify(localUsers))
+
+        informationBox.innerHTML += 
+                `<div class='successful'>        
+                    <h3>✅ Successfully deleted users</h3>
+                </div>`
+
+        window.localStorage.setItem('notifications', informationBox.innerHTML)
     })
 
 
-
-
 /*_______________________________________________________________| Funciones  |_______________________________________________________________*/
+
+ 
+
+
 
 
 /*__________________| Create Account  |__________________*/
 
 const createAccount = (name,age,startingAmount) => {
     if (findUsers(name)) {
-        informationBox.innerHTML = `
-                <p>⚠️ Duplicate user</p><br>
-                <p>The user you are trying to register is already in our database</p>
+        informationBox.innerHTML += `
+                    <div class='warning'>  
+                        <h3>⚠️ Duplicate user</h3>
+                        <p>The user you are trying to register is already in our database</p>
+                    </div>
                 `
     } else {
         if(age >= 18 && startingAmount >= 100) {
@@ -155,9 +180,12 @@ const createAccount = (name,age,startingAmount) => {
                 newUser.balance = startingAmount
                 newUser.account = accountNumber
 
-            informationBox.innerHTML = `<p>✅ Account created successfully</p><br>
-                    <p>Mr(s) <strong>${name} </strong> your customer account number is <strong>N°${accountNumber}</strong></p>
-                `
+            informationBox.innerHTML += `
+                     <div class='successful'>        
+                        <h3>✅ Account created successfully</h3>
+                        <p>Mr(s) <strong>${name} </strong> your customer account number is <strong>${accountNumber}</strong></p>
+                      </div>
+                      `
 
             localUsers = [...localUsers, newUser]
             window.localStorage.setItem('users', JSON.stringify(localUsers))
@@ -167,18 +195,23 @@ const createAccount = (name,age,startingAmount) => {
 
         } else if (age >= 18 && startingAmount < 100) {
             
-                informationBox.innerHTML = `
-                    <p>❌ Wrong amount</p><br>
-                    <p>Dear user, the minimum amount to open an account is <strong>100$</strong></p>
+                informationBox.innerHTML += ` 
+                    <div class='danger'>
+                        <h3>❌ Wrong amount</h3>
+                        <p>Dear user, the minimum amount to open an account is <strong>100$</strong></p>
+                    </div>
                     `
-                    document.getElementById('age').style.border = '.17em solid #cf1b1b'  ////////////////////////////////////////////////////////////////////
         } else {
-                informationBox.innerHTML = `
-                   <p>❌ You are underage</p><br>
-                   <p>Dear user, you are not old enough to create an account</p>
+                informationBox.innerHTML += `
+                   <div class='danger'>
+                        <h3>❌ You are underage</h3>
+                        <p>Dear user, you are not old enough to create an account</p>
+                   </div>
                    `
         }
     }
+
+    window.localStorage.setItem('notifications', informationBox.innerHTML)
 }
 
 /*__________________| Find User  |__________________*/
@@ -200,34 +233,51 @@ const findUsers = (nameUser) => {
 
 const transfer = (remitent,destinatary,account,amount) => { 
  
+    if(findUsers(remitent) && findUsers(destinatary)) {
 
-if(findUsers(remitent).name && findUsers(destinatary).name ) {
-        if(findUsers(destinatary).account === account && findUsers(remitent).balance >= amount)  {  
-            let saldoDisponible = localUsers[findUsers(remitent).index].balance -= amount
-            
-            informationBox.innerHTML = `
-            <p>✅ Transacción exitosa!</p><br>
-            <p>saldo despues de la operación: <strong>${saldoDisponible}$</strong></p><br>
-            <p>Usted ha transferido <strong>${amount}$</strong> a la cuenta <strong>N°${account}</strong></p>
-            `
-            localUsers[findUsers(destinatary).index].balance += amount
-            formTransfer.reset()
+        const remitentIndex = findUsers(remitent).index, 
+              remitentName = findUsers(remitent).name, 
+              remitentBalance = findUsers(remitent).balance,
+              destinataryIndex = findUsers(destinatary).index, 
+              destinataryName = findUsers(destinatary).name, 
+              destinataryAccount = findUsers(destinatary).account, 
+              destinataryBalance = findUsers(destinatary).balance 
 
-        } else if (findUsers(destinatary).account === account && findUsers(remitent).balance < amount) {
-            informationBox.innerHTML = `
-            <p>❌ Saldo insuficiente para esta operación</p>
-            `
-        } else {
-            informationBox.innerHTML = `
-            <p>❌ Numero de cuenta invalido</p>
-            `
-        } 
+        if(remitentName && destinataryName) {
+            if(destinataryAccount === account && remitentBalance >= amount)  {  
+                let availableBalance = localUsers[remitentIndex].balance -= amount
+                
+                informationBox.innerHTML += 
+                    `<div class='successful'>
+                        <h3>✅ Succesful transaction!</h3>
+                        <p>Balance after the operation: <strong>${availableBalance}$</strong></p>
+                        <p>You have transferred <strong>${amount}$</strong> to the account <strong>N°${account}</strong></p>
+                    </div>`
+    
+                localUsers[destinataryIndex].balance += amount
+    
+            } else if (destinataryAccount === account && destinataryBalance < amount) {
+                informationBox.innerHTML += 
+                    `<div class='warning'>
+                        <h3>⚠️ Insufficient balance for this operation</h3>
+                        <p>The available balance in your account is less than the amount you want to transfer</p>
+                    </div>`
+            } else informationBox.innerHTML += 
+                    `<div class='danger'>
+                        <h3>❌ Invalid account number</h3>
+                        <p>The account number you have entered does not correspond to that of any record</p>
+                    </div>`
+            }
 
-} else {
-    informationBox.innerHTML = `
-            <p>❌ Usuario no existe</p>
-            `
-}
+    } else  informationBox.innerHTML += 
+                `<div class='warning'>
+                    <h3>⚠️ User does not exist</h3>
+                    <p>The remitent or destinatary is not registered in our banking system</p>
+                </div>`
+
+    formTransfer.reset()
+
+    window.localStorage.setItem('notifications', informationBox.innerHTML)
 }
 
 /*__________________| Deposit  |__________________*/
@@ -239,18 +289,23 @@ const deposit = (name,accountNumber,amount) => {
     
         if(account === accountNumber) {
             localUsers[index].balance += amount
-            informationBox.innerHTML = 
-               `
-                <p>✅ Succesful transaction</p><br>
-                <p>You have deposited the amount of <strong>${amount}$</strong> to the account <strong>N°${accountNumber}</strong> belonging to <strong>${name}</strong></p>
-               `
+            window.localStorage.setItem('users', JSON.stringify(localUsers))
+            informationBox.innerHTML += 
+               `<div class='successful'>
+                 <h3>✅ Succesful transaction</h3>
+                 <p>You have deposited the amount of <strong>${amount}$</strong> to the account <strong>N°${accountNumber}</strong> belonging to <strong>${name}</strong></p>
+               </div>`
         } 
     } else {
-        informationBox.innerHTML = 
-            `<p>❌ Wrong data</p><br>
-             <p>Dear user, the data you have entered is incorrect, please check and try again</p>`
+        informationBox.innerHTML += 
+            `<div class='danger'>
+                <h3>❌ Wrong data</h3>
+                <p>Dear user, the data you have entered is incorrect, please check and try again</p>
+            </div>`
     }
     formDeposit.reset()
+
+    window.localStorage.setItem('notifications', informationBox.innerHTML)
 }
 
 
@@ -259,7 +314,6 @@ const deposit = (name,accountNumber,amount) => {
 
 
 const findAccount = (accountNumber) => {
-    
     if(localUsers) {
         let user
         localUsers.forEach(({name,age,balance,account}, index) => {
@@ -276,18 +330,26 @@ const checkBalance = (accountNumber) => {
         const {name, balance, account} = findAccount(accountNumber)
     
         if(accountNumber === account) {
-             informationBox.innerHTML = 
-                `
-                <p>💸 Available Balance</p><br>
-                <p>Dear <strong>${name},</strong> the available balance in your account is <strong>${balance} $</strong></p>
-                `
+             informationBox.innerHTML += 
+              `<div class='successful'>
+                  <h3>💸 Available Balance</h3>
+                  <p>Dear <strong>${name},</strong> the available balance in your account is <strong>${balance} $</strong></p>
+               </div>`
            formCheckBalance.reset()
         } 
     }
-    else if (isNaN(accountNumber)) informationBox.innerHTML = `<p>⚠️ Enter a valid account number to check the available balance</p>`
-    else informationBox.innerHTML =  `<p>❌ The account number you have entered is not registered in our banking system.</p>`
+    else if (isNaN(accountNumber)) informationBox.innerHTML += 
+            `<div class='warning'>
+                <p>⚠️ Enter a valid account number to check the available balance</p>
+            </div>`
+    else informationBox.innerHTML +=  
+            `<div class='danger'>
+                <p>❌ The account number you have entered is not registered in our banking system</p>
+            </div>`
 
     formCheckBalance.reset()
+
+    window.localStorage.setItem('notifications', informationBox.innerHTML)
 }
 
 
