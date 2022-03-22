@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banco en linea</title>
+    <title>Online Bank JS</title>
 
     <link rel="icon" href="img/favicon.png">
     <link rel="stylesheet" href="css/estilo.css?v2">
@@ -19,121 +19,133 @@
             <li id="userQuery">✅ Ver Registro</li>
         </ul>
     </nav>
-    
-    <section class="main-content">
-        <div class="alert-box">
-            <div id="alerts">
-                
-            </div>
-        </div>
 
-        <div class="create-account">
-            <h2>Crear Cuenta</h2>
-            <form>
-                <div class="container-inputs">
-                    <input type="text" 
-                            placeholder="Nombre"  
-                            id="nombre" 
-                            required
-                    >
-                    <input type="text" 
-                            placeholder="Edad"  
-                            id="edad" 
-                            required
-                    >
-                    <input type="text"
-                            placeholder="Monto de apertura" 
-                            id="montoApertura" 
-                            required
-                    >
+    <div class="main-content">
+        <div>
+            <section class="alert-box">
+                <h2>🔔 Notificaciones</h2>
+                <div id="alerts">
+                            
                 </div>
-                <div class="container-btn">
-                    <button class="btn">Crear</button>
+            </section>
+            
+            <section class="content-forms">
+                <div class="create-account">
+                    <div>
+                        <h2>💼 Create Account</h2>
+                        <form>
+                            <div class="container-inputs">
+                                <input type="text" 
+                                        placeholder="Name"  
+                                        id="name" 
+                                        required
+                                >
+                                <input type="text" 
+                                        placeholder="Age"  
+                                        id="age" 
+                                        value="100"
+                                        required
+                                >
+                                <input type="text"
+                                        placeholder="Starting amount" 
+                                        id="startingAmount" 
+                                        value="100"
+                                        required
+                                >
+                            </div>
+                            <div class="container-btn">
+                                <input type="submit" value="Create" class="btn" />
+                            </div>
+                        </form>
+                    </div>
+                </div>    
+            
+                <div class="transfer">
+                    <div>
+                        <h2>⬆️ Transfer funds</h2>
+                        <form>
+                            <div class="container-inputs">
+                                <input type="text" 
+                                        placeholder="Remitent"
+                                        id="remitent"
+                                        required
+                                >
+                                <input type="text" 
+                                        placeholder="Destinatary"
+                                        id="destinatary"
+                                        required
+                                >
+                                <input type="text" 
+                                        placeholder="Account destinatary"  
+                                        id="accountNumber" 
+                                        required
+                                >
+                                <input type="text"
+                                        placeholder="Amount to send"
+                                        id="amountToSend" 
+                                        required
+                                >
+                            </div>
+                            <div class="container-btn">
+                                <input type="submit" value="Transfer" class="btn" />
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </form>
-        </div>    
-    
-        <div class="transfer">
-            <h2>Transferir</h2>
-            <form>
-                <div class="container-inputs">
-                    <input type="text" 
-                            placeholder="Emisor"
-                            id="emisor"
-                            required
-                    >
-                    <input type="text" 
-                            placeholder="Receptor"
-                            id="receptor"
-                            required
-                    >
-                    <input type="text" 
-                            placeholder="N° Cuenta Receptor"  
-                            id="numeroCuenta" 
-                            required
-                    >
-                    <input type="text"
-                            placeholder="Monto a enviar"
-                            id="montoTransferir" 
-                            required
-                    >
-                </div>
-                <div class="container-btn">
-                    <button class="btn">Transferir</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="deposit">
-            <h2>Depositar</h2>
-            <form>
-                <div class="container-inputs">
-                    <input type="text"
-                            placeholder="Nombre"  
-                            id="nombreUsuario" 
-                            required
-                    >
-                    <input type="text" 
-                            placeholder="N° de cuenta" 
-                            id="cuentaDepositar" 
-                            required
-                    >
-                    <input type="text"
-                            placeholder="Monto"
-                            id="montoSaldo" 
-                            required
-                    >
-                </div>
-                <div class="container-btn">
-                    <button class="btn">Depositar</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="check-balance">
-            <h2>Consultar</h2>
-            <form>
-                <div class="container-inputs">
-                    <input type="text" 
-                            placeholder="Nombre de CTA consultar"  
-                            id="usuarioNombre" 
-                            required
-                    >
-                </div>
-                <div class="container-btn">
-                    <button class="btn">Consultar</button>
-                </div>
-            </form>
-        </div>
         
-        <!-- <div class="registered">
-            <button id="btn-registrados">Ver Usuarios Registrados
-            </button>
-        </div> -->
-    </section>
+                <div class="deposit">
+                    <div>
+                        <h2>⬇️ Deposit funds</h2>
+                        <form>
+                            <div class="container-inputs">
+                                <input type="text"
+                                        placeholder="Name"  
+                                        id="userName" 
+                                        required
+                                >
+                                <input type="text" 
+                                        placeholder="N° Account" 
+                                        id="accountToDeposit" 
+                                        required
+                                >
+                                <input type="text"
+                                        placeholder="Balance to deposit"
+                                        id="balanceToDeposit" 
+                                        required
+                                >
+                            </div>
+                            <div class="container-btn">
+                                <input type="submit" value="Deposit" class="btn" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        
+                <div class="check-balance">
+                    <div>
+                        <h2>💸 Check balance</h2>
+                        <form>
+                            <div class="container-inputs">
+                                <input type="text" 
+                                        placeholder="Account number to consult"  
+                                        id="accountNumberToConsult" 
+                                        required
+                                >
+                            </div>
+                            <div class="container-btn">
+                                <input type="submit" value="Check" class="btn" />                            
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
 
     <footer>
-        <p>© 2020 diegobarboza</p>
+        <p>© 2020 OnlineBank</p>
+        <a href="https://instagram.com/barbozadiego_dev" target="_blank" rel="noopener noreferrer">by @barbozadiego_dev</a>
     </footer>
 
     <script src="scripts/index.js?v6"></script>

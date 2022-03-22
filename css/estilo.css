@@ -78,74 +78,81 @@ nav {
 
 .main-content {
     width: 100%;
-    /* display: flex; */
+    padding: 0 10% 5em;
 }
 
-.main-content h2 {
-    color: var(--grey-300);
+/* .main-content > div {
+    border: .15em solid var(--grey-900);
+    border-radius: 1em;
+    overflow: hidden;
+} */
+
+.alert-box {
+    padding: 3em 5em 5em;
+    background-color: #fff;
+    border: .15em solid var(--grey-900);
+    border-radius: 1em;
+    overflow: hidden;
+    margin-bottom: 3em;
+}
+
+.content-forms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
+h2 {
+    color: var(--grey-900);
     text-align: center;
     margin-bottom: 1.5em;
 }
 
 
-.alert-box {
-    padding: 5em;
-    background-color: #fff;
-}
-
-/* .info {
-    width: 100%;
-    color: red;
-    background-color: #009432;
-    padding: 2em;
-} */
-
-.create-account, .deposit {
-    background-color: var(--grey-700);
-    border-bottom: .4em solid var(--grey-800);
-}
-
-
-.transfer, .check-balance {
-    background-color: var(--grey-600);
-    border-bottom: .4em solid var(--grey-700);
-}
-
 
 .create-account, .deposit,
 .transfer, .check-balance {
     width: 100%;
-    padding: 4em 0;
-}
-
-.check-balance {
-    border: none;
-}
-
-
-.container-inputs {
+    padding: 5em;
+    border-radius: 1em;
+    overflow: hidden;
+    border: .15em solid var(--grey-900);
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.container-inputs {
+    display: grid;
+    gap: 1.5em;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
     margin-bottom: 3em;
 }
 
+.check-balance .container-inputs {
+    grid-template-columns: 1fr;
+}
+
+
+
 ::placeholder {
-    color: var(--grey-400);
+    color: var(--grey-600);
 }
 
 input {
     font-size: 1em;
-    color: var(--grey-200);
-    padding: 1.2em 1em;
+    /* color: var(--grey-200); */
+    padding: 1em;
     border-radius: .5em;
     border: .15em solid var(--grey-900);
     background-color: inherit;
     /* border: .15em solid #fff; */
 }
 
-form input:not(:last-child) {
+/* form input:not(:last-child) {
     margin-right: 1em;
-}
+} */
 
 
 .container-btn {
