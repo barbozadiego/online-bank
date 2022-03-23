@@ -128,7 +128,9 @@ const formCreateAccount = document.querySelector('.create-account form')
             window.localStorage.setItem('notifications', informationBox.innerHTML)
     })
 
-    btnDeleteNotifications.addEventListener('click', () => informationBox.innerHTML = '')
+    btnDeleteNotifications.addEventListener('click', () => {
+        window.localStorage.setItem('notifications', informationBox.innerHTML = '')
+    })
 
     btnDeleteUsers.addEventListener('click', () => {
         const usersLog = document.getElementById('usersLog')

@@ -67,11 +67,11 @@ body::-webkit-scrollbar-button {
 }
 
 
-button {
+/* button {
     border: 0;
     background-color: inherit;
     cursor: pointer;
-}
+} */
 
 body {
     min-height: 100vh;
@@ -119,8 +119,8 @@ nav {
     border-radius: .5em;
 }
 
-.menu li:first-child {
-    margin-right: 1.5em;
+.menu li:not(:last-child) {
+    margin-right: 1em;
 }
 
 .main-content {
@@ -255,7 +255,7 @@ input {
     justify-content: center;
 }
 
-.btn, button  {
+.btn  {
     font-size: 1em;
     min-width: 10em;
     color: var(--grey-100);
