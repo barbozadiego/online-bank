@@ -100,30 +100,38 @@ const formCreateAccount = document.querySelector('.create-account form')
 /*__________________| Show Users  |__________________*/
 
     btnUserQuery.addEventListener('click', () => {
-      const usersLog = document.createElement('div'), 
-            deleteDuplicate = document.getElementById('usersLog')
-            usersLog.id = "usersLog"
+      const alertUsersLog = document.createElement('div'), 
+            firstChild = displayOnScreen.firstElementChild,
+            deleteDuplicate = document.getElementById('alertUsersLog')
+            
 
             if(localUsers.length > 0) { 
                 for(let user of localUsers) {
-                    usersLog.innerHTML += 
-                            `<p class='user'>
-                                <strong>👤 Name:</strong> ${user.name} | 
-                                <strong> Age:</strong> ${user.age} |
-                                <strong> N° Account:</strong> ${user.account}
-                            </p>`
+                    alertUsersLog.innerHTML += 
+                            `<div class='user-card'>
+                                <img src="/img/user.png" alt="user">
+                                <div>
+                                    <h4>${user.name}</h4>
+                                    <p>Account N° <strong>${user.account}</strong></p>
+                                    <p>Available balance <strong>${user.balance}$</strong></p>
+                                    <p>${user.age} years old</p>
+                                </div>
+                            </div>`
                 }
-        
-                displayOnScreen.appendChild(usersLog)
+                
             } else {
-                usersLog.innerHTML += 
+                alertUsersLog.innerHTML += 
                     `<div class='warning'>  
                         <h3>⚠️ User log is empty</h3>
+                        <p>No user to display</p>
                     </div>`
-                displayOnScreen.appendChild(usersLog)
             }
 
-            if(deleteDuplicate) displayOnScreen.removeChild(deleteDuplicate)    
+            // if(deleteDuplicate) displayOnScreen.removeChild(deleteDuplicate)  
+            
+            firstChild 
+            ? displayOnScreen.insertBefore(alertUsersLog, firstChild)
+            : displayOnScreen.appendChild(alertUsersLog)
 
             window.localStorage.setItem('notifications', informationBox.innerHTML)
     })
@@ -133,25 +141,36 @@ const formCreateAccount = document.querySelector('.create-account form')
     })
 
     btnDeleteUsers.addEventListener('click', () => {
-        const usersLog = document.getElementById('usersLog')
-        if(usersLog) usersLog.remove()
+        const alertDeleteUser = document.createElement('div'),
+              firstChild = displayOnScreen.firstElementChild,
+              deleteDuplicate = document.getElementById('alertDeleteUser')
+              alertDeleteUser.id = "alertDeleteUser"
         
-        localUsers = []
-        window.localStorage.setItem('users', JSON.stringify(localUsers))
-
-        informationBox.innerHTML += 
+        alertDeleteUser.innerHTML += 
                 `<div class='successful'>        
                     <h3>✅ Successfully deleted users</h3>
                 </div>`
 
-        window.localStorage.setItem('notifications', informationBox.innerHTML)
+        if(deleteDuplicate) displayOnScreen.removeChild(deleteDuplicate)
+
+        firstChild 
+        ? displayOnScreen.insertBefore(alertDeleteUser, firstChild)
+        : displayOnScreen.appendChild(alertDeleteUser)
+
+        localUsers = []
+        window.localStorage.setItem('users', JSON.stringify(localUsers))
+        // window.localStorage.setItem('notifications', informationBox.innerHTML)
     })
 
 
 /*_______________________________________________________________| Funciones  |_______________________________________________________________*/
 
  
-
+const scrollUp = () => {  
+    // e.target.scrollTo(0, 0)
+    // displayOnScreen.scrollTo(0, 0)
+    displayOnScreen.scroll({top: 0})
+}
 
 
 
@@ -328,30 +347,41 @@ const findAccount = (accountNumber) => {
 }
 
 const checkBalance = (accountNumber) => {
+    const alertBalance = document.createElement('div'),
+          firstChild = displayOnScreen.firstElementChild
+          alertBalance.id = "alertBalance"
+        
     if(findAccount(accountNumber)) {
         const {name, balance, account} = findAccount(accountNumber)
     
         if(accountNumber === account) {
-             informationBox.innerHTML += 
+             alertBalance.innerHTML += 
               `<div class='successful'>
                   <h3>💸 Available Balance</h3>
-                  <p>Dear <strong>${name},</strong> the available balance in your account is <strong>${balance} $</strong></p>
+                  <p>Dear <strong>${name},</strong> the available balance in your account is <strong>${balance}$</strong></p>
                </div>`
-           formCheckBalance.reset()
         } 
-    }
-    else if (isNaN(accountNumber)) informationBox.innerHTML += 
+    } else if (isNaN(accountNumber)) { alertBalance.innerHTML = 
             `<div class='warning'>
-                <p>⚠️ Enter a valid account number to check the available balance</p>
-            </div>`
-    else informationBox.innerHTML +=  
-            `<div class='danger'>
-                <p>❌ The account number you have entered is not registered in our banking system</p>
+                <h3>⚠️ Data entered is not valid</h3>
+                <p>Enter a valid account number to check the available balance</p>
             </div>`
 
+    } else { alertBalance.innerHTML =  
+            `<div class='danger'>
+                <h3>❌ The account doesn't exist</h3>
+                <p>The account number you have entered is not registered in our banking system</p>
+            </div>`
+    }
     formCheckBalance.reset()
 
-    window.localStorage.setItem('notifications', informationBox.innerHTML)
+    firstChild 
+    ? displayOnScreen.insertBefore(alertBalance, firstChild)
+    : displayOnScreen.appendChild(alertBalance)
+
+    scrollUp()
+    
+    // window.localStorage.setItem('notifications', alertBalance.innerHTML)
 }
 
 
