@@ -1,29 +1,120 @@
-@media only screen and (max-width: 500px) and (min-width: 0px) { /* ___ Pantallas de 701px a 950px ___ */
-    label, input {
-        display: block;
-        margin-bottom: .5em;
+/*__________________________________| Screen up to 1400px width |__________________________________*/
+
+@media screen and (max-width: 1400px) {
+    body { font-size: 14px; }
+
+
+}
+
+
+/*__________________________________| Screen up to 1200px width |__________________________________*/
+
+@media screen and (max-width: 1200px) {
+    body { font-size: 13px; }
+
+    #notifications {
+        max-height: 15em;
     }
 
-    input {
-        margin: 0 auto;
+    .content-forms {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 1.5em;
+    }
+    
+    .container-notifications {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+    
+    .create-account {
+        grid-column: span 1;
+        grid-row: 2 / span 1;
     }
 
-    .caja-inputs, .art-5 {
-        display: block;
-        margin: 0 auto;
-        justify-content: initial;
+    .check-balance {
+        grid-column: 2 / span 1;
+        grid-row: 2 / span 1;
+    }
+    
+    .deposit {
+        grid-column: span 1;
+        grid-row: 3 / span 1;
+    }
+    
+    .transfer {
+        grid-column: 2 / span 1;
+        grid-row: 3 / span 1;
+    }
+}
+
+
+
+/*__________________________________| Screen up to 1024px width |__________________________________*/
+
+@media screen and (max-width: 1024px) {
+    
+
+
+
+
+}
+
+
+
+/*__________________________________| Screen up to 900px width |__________________________________*/
+
+@media screen and (max-width: 900px) {
+    body { font-size: 12px; }
+
+
+
+    
+}
+
+
+/*__________________________________| Screen up to 767px width |__________________________________*/
+
+@media screen and (max-width: 767px) {
+    body { font-size: 11px; }
+
+    #notifications {
+        max-height: 15em;
     }
 
-    article {
+    .content-forms {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
     }
 
-    .art-1, .art-2, .art-3, .art-4 {
-        padding: 2% 0;
-    }
+}
 
-    .btn-cuenta, .btn-depositar, .btn-transferir, .btn-registrados, .btn-consultarSaldo {
-        margin: 1.5em auto 0 auto;
-    }
-  }
+
+
+/*__________________________________| Screen up to 600px width |__________________________________*/
+
+@media screen and (max-width: 600px) {
+
+
+
+}
+
+
+
+/*__________________________________| Screen up to 480px width |__________________________________*/
+
+@media screen and (max-width: 480px) {
+    body { font-size: 10px; }
+
+
+}
+
+
+
+/*__________________________________| Screen up to 320px width |__________________________________*/
+    
+@media screen and (max-width: 320px) {
+    body { font-size: 8px; }
+     
+    
+}

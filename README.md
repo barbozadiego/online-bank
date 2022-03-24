@@ -2,7 +2,7 @@
 
 # Online Bank JS
 
-Small dynamic application that simulates an online banking system, it has a notification area where you can see all the alerts of the operations.
+Small dynamic application that simulates an online banking system, it has a notification area where you can see all the alerts of the operations. LocalStorage is used to save the data of registered users.
 
 ## Functionality
 

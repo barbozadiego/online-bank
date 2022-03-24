@@ -146,12 +146,15 @@ const formCreateAccount = document.querySelector('.create-account form'),
 
 const process = (element) => {
     const firstChild = notificationBox.firstElementChild
+    const breackPoint = matchMedia('(max-width:767px)')
 
     firstChild 
         ? notificationBox.insertBefore(element, firstChild)
         : notificationBox.appendChild(element)
 
     notificationBox.scroll({top: 0})
+    if(breackPoint.matches) window.scroll({top: 0})
+
     window.localStorage.setItem('notifications', notificationBox.innerHTML)
 }
 
