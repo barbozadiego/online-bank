@@ -259,13 +259,6 @@ form {
     grid-template-rows: repeat(3, 1fr);
 }
 
-/* .create-account form {
-}
-
-.deposit form {
-    grid-template-rows: repeat(3, 1fr);
-} */
-
 .check-balance form {
     grid-template-columns: 1fr;
 }
