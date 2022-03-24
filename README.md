@@ -1,5 +1,5 @@
 
-# 🏦💸 Online Bank JS
+# 🏦 Online Bank JS
 
 ## Overview
 
